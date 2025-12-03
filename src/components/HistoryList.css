@@ -1,0 +1,121 @@
+.history-list {
+    padding: var(--spacing-lg);
+    animation: fadeIn 0.8s ease 0.3s both;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.list-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.list-title svg {
+    width: 24px;
+    height: 24px;
+    color: #667eea;
+}
+
+.clear-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: rgba(245, 87, 108, 0.1);
+    border: 1px solid rgba(245, 87, 108, 0.2);
+    border-radius: var(--radius-sm);
+    color: #f5576c;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+}
+
+.clear-button:hover {
+    background: rgba(245, 87, 108, 0.2);
+    transform: translateY(-2px);
+}
+
+.clear-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+.history-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    text-align: left;
+    transition: all var(--transition-normal);
+    animation: slideIn 0.4s ease both;
+}
+
+.history-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateX(4px);
+}
+
+.history-city {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.history-icon {
+    width: 18px;
+    height: 18px;
+    color: #667eea;
+    flex-shrink: 0;
+}
+
+.history-time {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .history-list {
+        padding: var(--spacing-md);
+    }
+
+    .list-title {
+        font-size: 1.1rem;
+    }
+
+    .history-city {
+        font-size: 0.9rem;
+    }
+
+    .history-time {
+        font-size: 0.75rem;
+    }
+}

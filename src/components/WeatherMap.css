@@ -1,0 +1,74 @@
+.map-container {
+    padding: var(--spacing-lg);
+    animation: fadeIn 0.8s ease 0.5s both;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    /* Fixed height to ensure rendering */
+    width: 100%;
+}
+
+.map-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.map-title svg {
+    width: 24px;
+    height: 24px;
+    color: #667eea;
+}
+
+.map-wrapper {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 0;
+    background: #1e293b;
+    /* Fallback background */
+}
+
+/* Customizing Leaflet controls for dark theme */
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--glass-border) !important;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--glass-border);
+}
+
+.map-popup {
+    text-align: center;
+}
+
+.map-popup strong {
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 400px;
+    }
+}

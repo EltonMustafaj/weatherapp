@@ -1,0 +1,80 @@
+.error-container {
+    padding: var(--spacing-lg);
+    text-align: center;
+    animation: slideIn 0.5s ease;
+    border-left: 4px solid #f5576c;
+}
+
+.error-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--spacing-md);
+    color: #f5576c;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.error-icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 10px rgba(245, 87, 108, 0.3));
+}
+
+.error-title {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.error-message {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.retry-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--secondary-gradient);
+    color: white;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: all var(--transition-normal);
+}
+
+.retry-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+}
+
+.retry-button:active {
+    transform: translateY(0);
+}
+
+.retry-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 480px) {
+    .error-container {
+        padding: var(--spacing-md);
+    }
+
+    .error-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .error-title {
+        font-size: 1.25rem;
+    }
+
+    .error-message {
+        font-size: 0.9rem;
+    }
+}

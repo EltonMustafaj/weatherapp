@@ -1,0 +1,126 @@
+.temperature-chart {
+    padding: var(--spacing-lg);
+    animation: fadeIn 0.8s ease 0.4s both;
+}
+
+.chart-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+.chart-title svg {
+    width: 24px;
+    height: 24px;
+    color: #667eea;
+}
+
+.chart-container {
+    height: 300px;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+}
+
+.forecast-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.forecast-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    animation: fadeIn 0.5s ease both;
+}
+
+.forecast-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.forecast-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    text-transform: capitalize;
+}
+
+.forecast-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.forecast-temps {
+    display: flex;
+    gap: var(--spacing-xs);
+    font-weight: 600;
+}
+
+.temp-max {
+    color: #f6d365;
+    font-size: 1.1rem;
+}
+
+.temp-min {
+    color: #4facfe;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+    }
+
+    .forecast-cards {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: var(--spacing-xs);
+    }
+
+    .forecast-card {
+        padding: var(--spacing-xs);
+    }
+
+    .forecast-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .forecast-date {
+        font-size: 0.75rem;
+    }
+
+    .temp-max,
+    .temp-min {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .temperature-chart {
+        padding: var(--spacing-md);
+    }
+
+    .chart-container {
+        height: 200px;
+        padding: var(--spacing-sm);
+    }
+
+    .chart-title {
+        font-size: 1.1rem;
+    }
+}
