@@ -3,12 +3,21 @@ import axios from 'axios';
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const BASE_URL = 'https://api.weatherapi.com/v1';
 
+// Validate API key
+if (!API_KEY) {
+    console.error('API Key is missing! Make sure VITE_WEATHER_API_KEY is set in .env file');
+}
+
 /**
  * Get current weather for a city
  * @param {string} city - City name
  * @returns {Promise<Object>} Weather data
  */
 export const getCurrentWeather = async (city) => {
+    if (!API_KEY) {
+        throw new Error('API key is invalid or not provided.');
+    }
+    
     try {
         const response = await axios.get(`${BASE_URL}/current.json`, {
             params: {
@@ -42,6 +51,10 @@ export const getCurrentWeather = async (city) => {
  * @returns {Promise<Object>} Forecast data
  */
 export const getForecast = async (city, days = 7) => {
+    if (!API_KEY) {
+        throw new Error('API key is invalid or not provided.');
+    }
+    
     try {
         const response = await axios.get(`${BASE_URL}/forecast.json`, {
             params: {
