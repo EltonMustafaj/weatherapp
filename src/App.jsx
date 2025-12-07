@@ -32,6 +32,31 @@ function App() {
     setHistory(loadHistory());
   }, []);
 
+  // Get current location on mount
+  useEffect(() => {
+    const getCurrentLocation = () => {
+      if ('geolocation' in navigator) {
+        setLoading(true);
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            handleSearch(`${latitude},${longitude}`);
+          },
+          (error) => {
+            console.error('Error getting location:', error);
+            // Fallback to default city if location access is denied
+            handleSearch('Prishtina');
+          }
+        );
+      } else {
+        // Fallback if geolocation is not supported
+        handleSearch('Prishtina');
+      }
+    };
+
+    getCurrentLocation();
+  }, []);
+
 
   const handleSearch = async (city) => {
     console.log('handleSearch called with:', city);
