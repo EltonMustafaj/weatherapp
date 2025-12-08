@@ -62,10 +62,13 @@ function App() {
 
   // Initial fetch: fallback first, then try current location
   useEffect(() => {
-    const fallbackCity = 'Prishtina';
+    const isMobileLike = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
+    // Use coordinates to avoid API lookup failures for localized city names
+    const fallbackCity = '42.6629,21.1655'; // Prishtina coords
     handleSearch(fallbackCity);
 
-    if ('geolocation' in navigator) {
+    if (!isMobileLike && 'geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
