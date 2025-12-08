@@ -71,12 +71,31 @@ function App() {
           },
           (error) => {
             console.error('Error getting location:', error);
-            // Fallback to default city if location access is denied
+            
+            // Show user-friendly message based on error type
+            let errorMessage = '';
+            switch(error.code) {
+              case error.PERMISSION_DENIED:
+                errorMessage = "Nuk u mor leja për lokacion. Ju lutemi aktivizoni lokacionin në cilësimet e browserit tuaj.";
+                break;
+              case error.POSITION_UNAVAILABLE:
+                errorMessage = "Informacioni i lokacionit nuk është i disponueshëm.";
+                break;
+              case error.TIMEOUT:
+                errorMessage = "Kërkesa për lokacion skadoi.";
+                break;
+              default:
+                errorMessage = "Një gabim i panjohur ndodhi gjatë marrjes së lokacionit.";
+            }
+            
+            setError(errorMessage);
+            // Fallback to default city
             handleSearch('Prishtina');
           }
         );
       } else {
         // Fallback if geolocation is not supported
+        setError("Browseri juaj nuk e mbështet lokacionin automatik.");
         handleSearch('Prishtina');
       }
     };
