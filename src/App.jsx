@@ -32,6 +32,22 @@ function App() {
     setHistory(loadHistory());
   }, []);
 
+  // Get current location on mount (silently)
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          handleSearch(`${latitude},${longitude}`);
+        },
+        (error) => {
+          // Silently fail - user can manually search or use location button
+          console.log('Location access not available, user can search manually');
+        }
+      );
+    }
+  }, []);
+
   const handleSearch = async (city) => {
     console.log('handleSearch called with:', city);
     setLoading(true);
@@ -59,49 +75,6 @@ function App() {
       setLoading(false);
     }
   };
-
-  // Get current location on mount
-  useEffect(() => {
-    const getCurrentLocation = () => {
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            handleSearch(`${latitude},${longitude}`);
-          },
-          (error) => {
-            console.error('Error getting location:', error);
-            
-            // Show user-friendly message based on error type
-            let errorMessage = '';
-            switch(error.code) {
-              case error.PERMISSION_DENIED:
-                errorMessage = "Nuk u mor leja për lokacion. Ju lutemi aktivizoni lokacionin në cilësimet e browserit tuaj.";
-                break;
-              case error.POSITION_UNAVAILABLE:
-                errorMessage = "Informacioni i lokacionit nuk është i disponueshëm.";
-                break;
-              case error.TIMEOUT:
-                errorMessage = "Kërkesa për lokacion skadoi.";
-                break;
-              default:
-                errorMessage = "Një gabim i panjohur ndodhi gjatë marrjes së lokacionit.";
-            }
-            
-            setError(errorMessage);
-            // Fallback to default city
-            handleSearch('Prishtina');
-          }
-        );
-      } else {
-        // Fallback if geolocation is not supported
-        setError("Browseri juaj nuk e mbështet lokacionin automatik.");
-        handleSearch('Prishtina');
-      }
-    };
-
-    getCurrentLocation();
-  }, []);
 
   const handleAddToFavorites = () => {
     if (!weather) return;
