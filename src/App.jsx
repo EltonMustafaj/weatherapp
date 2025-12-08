@@ -43,6 +43,13 @@ function App() {
         (error) => {
           // Silently fail - user can manually search or use location button
           console.log('Location access not available, user can search manually');
+          // Fallback for mobile if permission denied or unavailable
+          handleSearch('Prishtina');
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 8000,
+          maximumAge: 60000
         }
       );
     }
