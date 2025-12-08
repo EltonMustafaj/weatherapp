@@ -166,4 +166,12 @@
   .app-header {
     margin-bottom: var(--spacing-lg);
   }
+
+  /* Tone down background glow on mobile for better readability */
+  .app::before,
+  .app::after,
+  .app-bg-orb {
+    opacity: 0.15;
+    filter: blur(80px);
+  }
 }
