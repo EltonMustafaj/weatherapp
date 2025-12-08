@@ -47,20 +47,23 @@
 .search-input {
     width: 100%;
     padding: 1rem 1rem 1rem 3rem;
-    background: transparent;
-    border: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
     color: var(--text-primary);
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: all var(--transition-normal);
 }
 
 .search-input::placeholder {
-    color: var(--text-tertiary);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .search-input:focus {
     outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
 .search-input:focus+.search-icon {
@@ -132,17 +135,16 @@
     top: calc(100% + 15px);
     left: 0;
     right: 0;
-    background: #1e293b;
-    /* Solid dark background for readability */
-    border: 1px solid var(--glass-border);
+    background: rgba(10, 12, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-md);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
     overflow: hidden;
     animation: fadeIn 0.2s ease;
     z-index: 2000;
-    /* Ensure it's on top of everything */
     max-height: 300px;
     overflow-y: auto;
+    backdrop-filter: blur(10px);
 }
 
 .suggestion-item {
@@ -164,7 +166,7 @@
 }
 
 .suggestion-item:hover {
-    background: rgba(99, 102, 241, 0.2);
+    background: rgba(99, 102, 241, 0.22);
     padding-left: 1.5rem;
 }
 
@@ -184,14 +186,14 @@
 }
 
 .suggestion-name {
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.02rem;
 }
 
 .suggestion-region {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -220,16 +222,17 @@
     }
 
     .search-input {
-        padding: 0.95rem 1rem 0.95rem 2.9rem;
-        font-size: 1.05rem;
+        padding: 1rem 1rem 1rem 3rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: #ffffff;
-        background: transparent;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
         -webkit-text-fill-color: #ffffff;
     }
 
     .search-input::placeholder {
-        color: rgba(255, 255, 255, 0.65);
+        color: rgba(255, 255, 255, 0.7);
         font-weight: 600;
     }
 
@@ -237,7 +240,7 @@
         left: 0.85rem;
         width: 22px;
         height: 22px;
-        color: rgba(255, 255, 255, 0.65);
+        color: rgba(255, 255, 255, 0.75);
     }
 
     .location-button {
