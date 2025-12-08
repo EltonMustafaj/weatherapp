@@ -32,29 +32,6 @@ function App() {
     setHistory(loadHistory());
   }, []);
 
-  // Get current location on mount (silently)
-  useEffect(() => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          handleSearch(`${latitude},${longitude}`);
-        },
-        (error) => {
-          // Silently fail - user can manually search or use location button
-          console.log('Location access not available, user can search manually');
-          // Fallback for mobile if permission denied or unavailable
-          handleSearch('Prishtina');
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 8000,
-          maximumAge: 60000
-        }
-      );
-    }
-  }, []);
-
   const handleSearch = async (city) => {
     console.log('handleSearch called with:', city);
     setLoading(true);
@@ -82,6 +59,29 @@ function App() {
       setLoading(false);
     }
   };
+
+  // Initial fetch: fallback first, then try current location
+  useEffect(() => {
+    const fallbackCity = 'Prishtina';
+    handleSearch(fallbackCity);
+
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          handleSearch(`${latitude},${longitude}`);
+        },
+        (error) => {
+          console.log('Location access not available, keeping fallback');
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 8000,
+          maximumAge: 60000
+        }
+      );
+    }
+  }, []);
 
   const handleAddToFavorites = () => {
     if (!weather) return;
