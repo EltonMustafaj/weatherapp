@@ -60,30 +60,35 @@ function App() {
     }
   };
 
-  // Initial fetch: fallback first, then try current location
+  // Initial fetch: try current location first, then fallback
   useEffect(() => {
-    const isMobileLike = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-
     // Use coordinates to avoid API lookup failures for localized city names
     const fallbackCity = '42.6629,21.1655'; // Prishtina coords
-    handleSearch(fallbackCity);
 
-    if (!isMobileLike && 'geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          handleSearch(`${latitude},${longitude}`);
-        },
-        (error) => {
-          console.log('Location access not available, keeping fallback');
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 8000,
-          maximumAge: 60000
-        }
-      );
-    }
+    const loadInitialWeather = async () => {
+      if (!('geolocation' in navigator)) {
+        handleSearch(fallbackCity);
+        return;
+      }
+
+      try {
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 60000
+          });
+        });
+
+        const { latitude, longitude } = position.coords;
+        handleSearch(`${latitude},${longitude}`);
+      } catch {
+        console.log('Could not get current location, using fallback location');
+        handleSearch(fallbackCity);
+      }
+    };
+
+    loadInitialWeather();
   }, []);
 
   const handleAddToFavorites = () => {
@@ -114,10 +119,40 @@ function App() {
     handleSearch(query);
   };
 
+  const resolveWeatherTheme = () => {
+    const conditionCode = weather?.current?.condition?.code;
+    const isDay = weather?.current?.is_day === 1;
+
+    if (!conditionCode) return 'theme-default';
+
+    if (conditionCode === 1000) {
+      return isDay ? 'theme-sunny' : 'theme-clear-night';
+    }
+
+    if ([1003, 1006, 1009, 1030, 1135, 1147].includes(conditionCode)) {
+      return 'theme-cloudy';
+    }
+
+    if ([1063, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1240, 1243, 1246].includes(conditionCode)) {
+      return 'theme-rainy';
+    }
+
+    if ([1066, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258].includes(conditionCode)) {
+      return 'theme-snowy';
+    }
+
+    if ([1087, 1273, 1276, 1279, 1282].includes(conditionCode)) {
+      return 'theme-stormy';
+    }
+
+    return 'theme-cloudy';
+  };
+
   const isFavorite = weather && favorites.includes(weather.location.name);
+  const weatherThemeClass = resolveWeatherTheme();
 
   return (
-    <div className="app">
+    <div className={`app ${weatherThemeClass}`}>
       {/* Weather Effects Overlay */}
       {weather && (
         <WeatherEffects
@@ -125,11 +160,15 @@ function App() {
           isDay={weather.current.is_day === 1}
         />
       )}
+      <div className="app-contrast-layer"></div>
       <div className="app-bg-orb"></div>
       <div className="app-container">
         {/* Header */}
         <header className="app-header">
-          <h1 className="app-title">☀️ Moti Sot</h1>
+          <h1 className="app-title">
+            <span className="app-title-emoji">☀️</span>
+            <span className="app-title-text">Moti Sot</span>
+          </h1>
           <p className="app-subtitle">Zbulo motin në çdo qytet të botës</p>
         </header>
 

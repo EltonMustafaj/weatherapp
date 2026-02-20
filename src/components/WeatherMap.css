@@ -21,7 +21,7 @@
 .map-title svg {
     width: 24px;
     height: 24px;
-    color: #667eea;
+    color: var(--text-accent);
 }
 
 .map-wrapper {
@@ -34,26 +34,26 @@
     box-shadow: var(--shadow-md);
     position: relative;
     z-index: 0;
-    background: #1e293b;
+    background: #dbeafe;
     /* Fallback background */
 }
 
-/* Customizing Leaflet controls for dark theme */
+/* Customizing Leaflet controls for light theme */
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-    background-color: var(--bg-secondary) !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
     color: var(--text-primary) !important;
     border-color: var(--glass-border) !important;
 }
 
 .leaflet-control-zoom-in:hover,
 .leaflet-control-zoom-out:hover {
-    background-color: var(--bg-tertiary) !important;
+    background-color: rgba(240, 249, 255, 1) !important;
 }
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-    background-color: var(--bg-secondary) !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
     color: var(--text-primary) !important;
     border: 1px solid var(--glass-border);
 }
@@ -63,7 +63,7 @@
 }
 
 .map-popup strong {
-    color: #667eea;
+    color: var(--text-accent);
     font-size: 1.1rem;
 }
 

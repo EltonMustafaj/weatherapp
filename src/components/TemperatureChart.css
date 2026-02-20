@@ -16,14 +16,14 @@
 .chart-title svg {
     width: 24px;
     height: 24px;
-    color: #667eea;
+    color: var(--text-accent);
 }
 
 .chart-container {
     height: 300px;
     margin-bottom: var(--spacing-lg);
     padding: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.5);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
 }
@@ -39,7 +39,7 @@
     flex-direction: column;
     align-items: center;
     padding: var(--spacing-sm);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.58);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     transition: all var(--transition-normal);
@@ -47,7 +47,7 @@
 }
 
 .forecast-card:hover {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.78);
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
 }
@@ -72,12 +72,12 @@
 }
 
 .temp-max {
-    color: #f6d365;
+    color: #d97706;
     font-size: 1.1rem;
 }
 
 .temp-min {
-    color: #4facfe;
+    color: #0284c7;
     font-size: 1.1rem;
 }
 

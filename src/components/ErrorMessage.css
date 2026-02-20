@@ -2,21 +2,21 @@
     padding: var(--spacing-lg);
     text-align: center;
     animation: slideIn 0.5s ease;
-    border-left: 4px solid #f5576c;
+    border-left: 4px solid #dc2626;
 }
 
 .error-icon {
     width: 60px;
     height: 60px;
     margin: 0 auto var(--spacing-md);
-    color: #f5576c;
+    color: #dc2626;
     animation: pulse 2s ease-in-out infinite;
 }
 
 .error-icon svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 10px rgba(245, 87, 108, 0.3));
+    filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.22));
 }
 
 .error-title {
@@ -48,7 +48,7 @@
 
 .retry-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+    box-shadow: 0 8px 20px rgba(14, 165, 168, 0.3);
 }
 
 .retry-button:active {

@@ -18,16 +18,12 @@ const HistoryList = ({ history, onSelectCity, onClearHistory }) => {
     }
 
     const formatTime = (timestamp) => {
-        const now = Date.now();
-        const diff = now - timestamp;
-        const minutes = Math.floor(diff / 60000);
-        const hours = Math.floor(diff / 3600000);
-        const days = Math.floor(diff / 86400000);
-
-        if (minutes < 1) return 'Tani';
-        if (minutes < 60) return `${minutes} min më parë`;
-        if (hours < 24) return `${hours} orë më parë`;
-        return `${days} ditë më parë`;
+        return new Date(timestamp).toLocaleString('sq-AL', {
+            day: '2-digit',
+            month: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
     };
 
     return (

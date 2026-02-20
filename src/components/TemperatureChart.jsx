@@ -97,7 +97,7 @@ const TemperatureChart = ({ forecast }) => {
                 display: true,
                 position: 'top',
                 labels: {
-                    color: 'rgba(255, 255, 255, 0.9)',
+                    color: 'rgba(15, 23, 42, 0.9)',
                     font: {
                         size: 12,
                         family: 'Inter',
@@ -125,11 +125,11 @@ const TemperatureChart = ({ forecast }) => {
         scales: {
             x: {
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.05)',
+                    color: 'rgba(15, 23, 42, 0.08)',
                     drawBorder: false,
                 },
                 ticks: {
-                    color: 'rgba(255, 255, 255, 0.7)',
+                    color: 'rgba(15, 23, 42, 0.78)',
                     font: {
                         size: 11,
                         family: 'Inter',
@@ -138,11 +138,11 @@ const TemperatureChart = ({ forecast }) => {
             },
             y: {
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.05)',
+                    color: 'rgba(15, 23, 42, 0.08)',
                     drawBorder: false,
                 },
                 ticks: {
-                    color: 'rgba(255, 255, 255, 0.7)',
+                    color: 'rgba(15, 23, 42, 0.78)',
                     font: {
                         size: 11,
                         family: 'Inter',
